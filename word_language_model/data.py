@@ -15,11 +15,6 @@ class Dictionary(object):
         else:
             self.wordfreq[word] +=1
 
-        # Update the word ids.
-        self.setup_ids()
-
-        return self.word2idx[word]
-
     def setup_ids(self):
         self.idx2word = []
         self.word2idx = {}
@@ -63,5 +58,8 @@ class Corpus(object):
                 for word in words:
                     ids[token] = self.dictionary.word2idx[word]
                     token += 1
+
+        # Update the word ids.
+        self.dictionary.setup_ids()
 
         return ids
