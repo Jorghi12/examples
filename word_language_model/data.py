@@ -66,7 +66,7 @@ class Corpus(object):
         assert os.path.exists(path)
 
         with open(path, 'r', encoding="utf8") as f:
-            ids = [] #torch.LongTensor(tokens)
+            ids = []
             for line in f:
                 words = line.split() + ['<eos>']
                 for word in words:
