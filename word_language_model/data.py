@@ -49,6 +49,9 @@ class Corpus(object):
                 for word in words:
                     self.dictionary.add_word(word)
 
+        # Update the ids. Needs to be called after new words are added.
+        self.dictionary.setup_ids()
+        
         # Tokenize file content
         with open(path, 'r', encoding="utf8") as f:
             ids = torch.LongTensor(tokens)
@@ -58,8 +61,5 @@ class Corpus(object):
                 for word in words:
                     ids[token] = self.dictionary.word2idx[word]
                     token += 1
-
-        # Update the word ids.
-        self.dictionary.setup_ids()
 
         return ids
